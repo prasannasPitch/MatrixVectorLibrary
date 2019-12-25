@@ -1,0 +1,27 @@
+@echo off
+
+SETLOCAL
+
+SET PLATFORM=windows_x64
+SET GENERATOR="Visual Studio 15 Win64"
+
+rem start cmake
+SET CURRENT_DIR=%cd%
+
+@echo %CURRENT_DIR%
+SET SOURCE_PATH=%CURRENT_DIR%\..\source
+SET CMAKE_PATH=%CURRENT_DIR%\..\Util\cmake-3.10.2-win32-x86\bin
+
+IF NOT EXIST %CURRENT_DIR%\%PLATFORM% (
+    MKDIR %CURRENT_DIR%\%PLATFORM%
+)
+cd %CURRENT_DIR%\%PLATFORM%
+%CMAKE_PATH%\cmake -G %GENERATOR% -T "" "" "" %SOURCE_PATH%
+cd %CURRENT_DIR%
+
+@echo off
+
+ENDLOCAL
+
+
+
